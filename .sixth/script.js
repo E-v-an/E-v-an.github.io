@@ -96,216 +96,53 @@ if (typeof THREE !== 'undefined') {
   camera.position.z = 6;
   camera.position.y = 0.5;
 
-  // ─── Create Premium Materials ───────────────────────────
-  
-  // Aluminum body material (like real Dell laptops)
-  const aluminumMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x2a2a2a,
-    metalness: 0.9,
-    roughness: 0.2,
-    envMapIntensity: 1.5
-  });
+// ─────────────────────────────────────────────
+// LOAD REAL GLB LAPTOP MODEL
+// ─────────────────────────────────────────────
 
-  // Screen bezel (matte black plastic)
-  const bezelMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x0a0a0a,
-    metalness: 0.3,
-    roughness: 0.8
-  });
+let laptopModel;
 
-  // Screen display (glossy with slight reflection)
-  const screenMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x1a1a3a,
-    metalness: 0.95,
-    roughness: 0.05,
-    emissive: 0x1a1a3a,
-    emissiveIntensity: 0.2
-  });
+const loader = new THREE.GLTFLoader();
 
-  // Keyboard keys
-  const keyMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x1a1a1a,
-    metalness: 0.1,
-    roughness: 0.9
-  });
+loader.load(
+  "C:\Users\USER\OneDrive\Desktop\Calvin\LIFE ADVANCEMENT\Github projects\Portfolio website\.sixth\assets\modelsassets/models/laptop.glb",
 
-  // Glowing Dell logo
-  const logoMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x0066cc,
-    emissive: 0x0066cc,
-    emissiveIntensity: 0.6,
-    metalness: 0.8,
-    roughness: 0.2
-  });
+  function (gltf) {
+    laptopModel = gltf.scene;
 
-  // ─── Build the Laptop ───────────────────────────────────
-  
-  const laptopGroup = new THREE.Group();
+    // scale model
+    laptopModel.scale.set(2, 2, 2);
 
-  // === BOTTOM SECTION (Keyboard/Touchpad) ===
+    // position model
+    laptopModel.position.set(0, 0, 0);
 
-  // Main base with rounded edges
-  const baseShape = new THREE.Shape();
-  const baseWidth = 3.0;
-  const baseDepth = 1.8;
-  const cornerRadius = 0.08;
-  
-  baseShape.moveTo(-baseWidth/2 + cornerRadius, -baseDepth/2);
-  baseShape.lineTo(baseWidth/2 - cornerRadius, -baseDepth/2);
-  baseShape.quadraticCurveTo(baseWidth/2, -baseDepth/2, baseWidth/2, -baseDepth/2 + cornerRadius);
-  baseShape.lineTo(baseWidth/2, baseDepth/2 - cornerRadius);
-  baseShape.quadraticCurveTo(baseWidth/2, baseDepth/2, baseWidth/2 - cornerRadius, baseDepth/2);
-  baseShape.lineTo(-baseWidth/2 + cornerRadius, baseDepth/2);
-  baseShape.quadraticCurveTo(-baseWidth/2, baseDepth/2, -baseWidth/2, baseDepth/2 - cornerRadius);
-  baseShape.lineTo(-baseWidth/2, -baseDepth/2 + cornerRadius);
-  baseShape.quadraticCurveTo(-baseWidth/2, -baseDepth/2, -baseWidth/2 + cornerRadius, -baseDepth/2);
-  
-  const extrudeSettings = { depth: 0.12, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02, bevelSegments: 3 };
-  const baseGeometry = new THREE.ExtrudeGeometry(baseShape, extrudeSettings);
-  const laptopBase = new THREE.Mesh(baseGeometry, aluminumMaterial);
-  laptopBase.rotation.x = -Math.PI / 2;
-  laptopBase.position.y = 0;
-  laptopBase.castShadow = true;
-  laptopGroup.add(laptopBase);
+    // rotate for better angle
+    laptopModel.rotation.x = 0.1;
+    laptopModel.rotation.y = 0.4;
 
-  // Keyboard area (slightly recessed)
-  const keyboardAreaGeo = new THREE.BoxGeometry(2.8, 0.02, 1.6);
-  const keyboardArea = new THREE.Mesh(keyboardAreaGeo, new THREE.MeshStandardMaterial({ 
-    color: 0x1a1a1a,
-    metalness: 0.2,
-    roughness: 0.8
-  }));
-  keyboardArea.position.set(0, 0.08, -0.05);
-  laptopGroup.add(keyboardArea);
+    // enable shadows
+    laptopModel.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
 
-  // Individual keys with realistic spacing
-  const keyWidth = 0.12;
-  const keyHeight = 0.12;
-  const keyGap = 0.02;
-  const rows = 5;
-  const cols = 14;
-  
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      const keyGeo = new THREE.BoxGeometry(keyWidth, 0.04, keyHeight, 1, 1, 1);
-      const key = new THREE.Mesh(keyGeo, keyMaterial);
-      
-      const xPos = -1.0 + (col * (keyWidth + keyGap));
-      const zPos = -0.8 + (row * (keyHeight + keyGap));
-      
-      key.position.set(xPos, 0.11, zPos);
-      key.castShadow = true;
-      laptopGroup.add(key);
-    }
+    scene.add(laptopModel);
+
+    console.log("Laptop model loaded successfully");
+  },
+
+  function (xhr) {
+    console.log(
+      (xhr.loaded / xhr.total) * 100 + "% loaded"
+    );
+  },
+
+  function (error) {
+    console.error("Error loading laptop model:", error);
   }
-
-  // Spacebar (wider key)
-  const spacebarGeo = new THREE.BoxGeometry(1.2, 0.04, keyHeight);
-  const spacebar = new THREE.Mesh(spacebarGeo, keyMaterial);
-  spacebar.position.set(0, 0.11, 0.48);
-  spacebar.castShadow = true;
-  laptopGroup.add(spacebar);
-
-  // Touchpad with realistic detail
-  const touchpadGeo = new THREE.BoxGeometry(1.1, 0.01, 0.7);
-  const touchpadMat = new THREE.MeshStandardMaterial({ 
-    color: 0x252525,
-    metalness: 0.4,
-    roughness: 0.3
-  });
-  const touchpad = new THREE.Mesh(touchpadGeo, touchpadMat);
-  touchpad.position.set(0, 0.09, 0.45);
-  laptopGroup.add(touchpad);
-
-  // Touchpad buttons
-  const buttonGeo = new THREE.BoxGeometry(0.5, 0.01, 0.08);
-  const leftButton = new THREE.Mesh(buttonGeo, keyMaterial);
-  leftButton.position.set(-0.27, 0.09, 1.08);
-  laptopGroup.add(leftButton);
-  
-  const rightButton = new THREE.Mesh(buttonGeo, keyMaterial);
-  rightButton.position.set(0.27, 0.09, 1.08);
-  laptopGroup.add(rightButton);
-
-  // === TOP SECTION (Screen) ===
-
-  // Screen back panel (aluminum)
-  const screenBackGeo = new THREE.BoxGeometry(3.0, 1.95, 0.08);
-  const screenBack = new THREE.Mesh(screenBackGeo, aluminumMaterial);
-  screenBack.position.set(0, 1.2, -0.85);
-  screenBack.rotation.x = -0.15;
-  screenBack.castShadow = true;
-  laptopGroup.add(screenBack);
-
-  // Screen bezel (black frame around display)
-  const bezelGeo = new THREE.BoxGeometry(2.92, 1.87, 0.05);
-  const bezel = new THREE.Mesh(bezelGeo, bezelMaterial);
-  bezel.position.set(0, 1.2, -0.77);
-  bezel.rotation.x = -0.15;
-  laptopGroup.add(bezel);
-
-  // Actual display screen
-  const displayGeo = new THREE.BoxGeometry(2.7, 1.65, 0.02);
-  const display = new THREE.Mesh(displayGeo, screenMaterial);
-  display.position.set(0, 1.2, -0.74);
-  display.rotation.x = -0.15;
-  laptopGroup.add(display);
-
-  // Screen glow overlay (animated)
-  const glowGeo = new THREE.PlaneGeometry(2.7, 1.65);
-  const glowMat = new THREE.MeshBasicMaterial({ 
-    color: 0x6c63ff,
-    transparent: true,
-    opacity: 0.15,
-    blending: THREE.AdditiveBlending
-  });
-  const screenGlow = new THREE.Mesh(glowGeo, glowMat);
-  screenGlow.position.set(0, 1.2, -0.72);
-  screenGlow.rotation.x = -0.15;
-  laptopGroup.add(screenGlow);
-
-  // Dell logo on lid (glowing blue circle)
-  const logoGeo = new THREE.CircleGeometry(0.06, 32);
-  const logo = new THREE.Mesh(logoGeo, logoMaterial);
-  logo.position.set(0, 1.95, -1.08);
-  logo.rotation.x = -0.15;
-  laptopGroup.add(logo);
-
-  // Hinge (connects base to screen)
-  const hingeGeo = new THREE.CylinderGeometry(0.04, 0.04, 3.0, 16);
-  const hingeMat = new THREE.MeshStandardMaterial({ 
-    color: 0x1a1a1a,
-    metalness: 0.9,
-    roughness: 0.3
-  });
-  const hinge = new THREE.Mesh(hingeGeo, hingeMat);
-  hinge.rotation.z = Math.PI / 2;
-  hinge.position.set(0, 0.15, -0.85);
-  laptopGroup.add(hinge);
-
-  // Webcam (small detail on top bezel)
-  const webcamGeo = new THREE.CircleGeometry(0.02, 16);
-  const webcamMat = new THREE.MeshStandardMaterial({ 
-    color: 0x0a0a0a,
-    metalness: 0.8,
-    roughness: 0.2
-  });
-  const webcam = new THREE.Mesh(webcamGeo, webcamMat);
-  webcam.position.set(0, 2.0, -0.93);
-  webcam.rotation.x = -0.15;
-  laptopGroup.add(webcam);
-
-  // Add some USB ports on the side (tiny details)
-  const portGeo = new THREE.BoxGeometry(0.02, 0.06, 0.12);
-  const portMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a });
-  
-  for (let i = 0; i < 3; i++) {
-    const port = new THREE.Mesh(portGeo, portMat);
-    port.position.set(1.6, 0.06, -0.5 + (i * 0.15));
-    laptopGroup.add(port);
-  }
-
-  scene.add(laptopGroup);
+);
 
   // ─── Professional Lighting Setup ────────────────────────
   
@@ -354,15 +191,20 @@ if (typeof THREE !== 'undefined') {
     const time = Date.now() * 0.0003;
     const scrollProgress = scrollY / (document.body.scrollHeight - window.innerHeight);
     
-    // Vertical movement based on scroll (slower, smoother)
-    laptopGroup.position.y = 1.5 - (scrollProgress * 6);
-    
-    // Horizontal wave motion (wider, slower arc)
-    laptopGroup.position.x = Math.sin(scrollProgress * Math.PI * 1.5) * 4;
-    
-    // Gentle continuous rotation
-    laptopGroup.rotation.y = time * 0.3;
-    laptopGroup.rotation.z = Math.sin(time * 0.5) * 0.03;
+   if (laptopModel) {
+  laptopModel.position.y = 1.5 - (scrollProgress * 6);
+
+  laptopModel.position.x =
+    Math.sin(scrollProgress * Math.PI * 1.5) * 4;
+
+  laptopModel.rotation.y = time * 0.3;
+
+  laptopModel.rotation.z =
+    Math.sin(time * 0.5) * 0.03;
+
+  laptopModel.position.y +=
+    Math.sin(time * 2) * 0.08;
+}
     
     // Subtle floating bob
     laptopGroup.position.y += Math.sin(time * 2) * 0.08;
