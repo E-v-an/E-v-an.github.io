@@ -201,3 +201,75 @@ footer {
   font-size: 0.9rem;
   border-top: 1px solid #2a2a2a;
 }
+/* ═══════════════════════════════════════════════════════
+   GLOWING CURSOR EFFECT
+   ═══════════════════════════════════════════════════════ */
+
+/* Hide the default cursor on desktop */
+body {
+  cursor: none;
+}
+
+/* Restore default cursor on links and buttons for usability */
+a, button, .btn, .btn-small {
+  cursor: pointer !important;
+}
+
+/* The small dot that follows the cursor exactly */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #6c63ff;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease, background-color 0.15s ease;
+}
+
+/* The larger glowing circle that follows with a delay */
+.cursor-glow {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(108, 99, 255, 0.4);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+  
+  /* The actual glow effect */
+  box-shadow: 
+    0 0 20px rgba(108, 99, 255, 0.3),
+    0 0 40px rgba(108, 99, 255, 0.2),
+    0 0 60px rgba(108, 99, 255, 0.1);
+}
+
+/* When hovering over clickable elements, make cursors bigger */
+body.cursor-hover .cursor-dot {
+  width: 15px;
+  height: 15px;
+  background-color: rgba(108, 99, 255, 0.8);
+}
+
+body.cursor-hover .cursor-glow {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(108, 99, 255, 0.6);
+}
+
+/* Hide custom cursor on mobile/touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  .cursor-dot, .cursor-glow {
+    display: none;
+  }
+}
