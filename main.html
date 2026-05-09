@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVAN KAUGI Portfolio</title>
+  <link rel="stylesheet" href="mainstyle.css">
+</head>
+<body>
+
+    <!-- 3D Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Navigation bar at the top -->
+  <nav>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span class="hamburger" aria-hidden="true"></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero section - first thing visitors see -->
+  <section id="hero">
+    <img src="assets/images/profile photo.jpeg" alt="Profile photo" class="profile-pic">
+    <h1>Hi, I'm <span>EVAN</span></h1>
+    <p class="tagline">Computer Science Graduate | Software Developer</p>
+    <a href="#contact" class="btn">Get In Touch</a>
+  </section>
+
+  <section id="stats">
+  <h2>Career Snapshot</h2>
+
+  <div class="stats-grid">
+    <div class="stat-card" id="projects-built">
+      <h3>5+</h3>
+      <p>Projects Built</p>
+      <div class="stat-action">
+        <button class="snapshot-btn btn-small" aria-expanded="false" aria-controls="snapshot-list">View projects</button>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <h3>3+</h3>
+      <p>Core Domains</p>
+      <div class="stat-action">
+        <button class="domains-btn btn-small" aria-expanded="false" aria-controls="domains-list">View domains</button>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <h3>100%</h3>
+      <p>Problem Solving Focus</p>
+      <div class="stat-action">
+        <button class="focus-btn btn-small" aria-expanded="false" aria-controls="focus-panel">Show 100% focus</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline snapshot list (hidden by default). Click the 5+ box button to toggle. -->
+  <div class="snapshot-card" id="snapshot-inline" aria-hidden="true">
+    <div id="snapshot-list" class="project-list" aria-hidden="true">
+      <ul>
+        <li class="project-item"><a href="https://github.com/E-v-an/E-v-an.github.io" target="_blank" rel="noopener noreferrer">Portfolio Website</a></li>
+        <li class="project-item">AI Messaging Agent</li>
+        <li class="project-item">Spotify-inspired Music Platform</li>
+        <li class="project-item">Project Four</li>
+        <li class="project-item">Project Five</li>
+      </ul>
+      <div class="snapshot-actions">
+        <a class="btn" href="https://github.com/E-v-an?tab=repositories" target="_blank" rel="noopener noreferrer">See all projects on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Domains list (hidden by default) -->
+  <div class="domains-card" id="domains-inline" aria-hidden="true">
+    <div id="domains-list" class="project-list" aria-hidden="true">
+      <ul>
+        <li class="project-item">Software Engineering</li>
+        <li class="project-item">Data Engineering & Analytics</li>
+        <li class="project-item">AI & Machine Learning</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Focus panel (hidden by default) -->
+  <div id="focus-panel" class="focus-panel" aria-hidden="true">
+    <div class="focus-inner">
+      <div class="focus-text">100% Focus</div>
+    </div>
+  </div>
+</section>
+
+  <!-- About section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+  I'm Evan Kaugi, a Computer Science graduate from Chuka University with interests in 
+  software engineering, cybersecurity, AI systems, and data engineering.
+  
+  I enjoy building products that solve practical African problems—from AI messaging 
+  agents to intelligent energy systems and interactive web applications.
+  
+  My goal is to become a world-class software engineer building scalable systems.
+    </p>
+  </section>
+
+  <!-- (snapshot section moved inline into #stats) -->
+
+  <!-- Skills section -->
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card" role="button" tabindex="0" data-skill="Python">Python</div>
+      <div class="skill-card" role="button" tabindex="0" data-skill="JavaScript">JavaScript</div>
+      <div class="skill-card" role="button" tabindex="0" data-skill="HTML & CSS">HTML & CSS</div>
+      <div class="skill-card" role="button" tabindex="0" data-skill="Git & GitHub">Git & GitHub</div>
+      <div class="skill-card" role="button" tabindex="0" data-skill="SQL">SQL</div>
+      <div class="skill-card" role="button" tabindex="0" data-skill="Java">Java</div>
+    </div>
+  </section>
+
+  <!-- Projects section -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>This personal portfolio site built with HTML, CSS, and JavaScript. Deployed using GitHub Pages.</p>
+        <a href="https://github.com/E-v-an/E-v-an.github.io" class="btn-small" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3>AI Messaging Agent</h3>
+        <p>Built a WhatsApp/SMS AI assistant using Twilio and OpenAI APIs capable of 
+            responding like the phone owner.</p>
+        <a href="#" class="btn-small">View on GitHub</a>
+      </div>
+
+      <div class="project-card">
+        <h3>Spotify-inspired Music Platform</h3>
+        <p>Interactive music platform integrating Spotify APIs and dynamic playback.</p>
+        <a href="#" class="btn-small">View on GitHub</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience">
+  <h2>Experience</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <h3>External Exam Marker</h3>
+      <p>Chuka University • 2026</p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>Computing Trainer</h3>
+      <p>TTI Computing & Informatics</p>
+    </div>
+
+    <div class="timeline-item" id="bsc-degree" role="button" tabindex="0">
+      <h3>BSc Applied Computer Science</h3>
+      <p>Chuka University • Graduated 2025</p>
+    </div>
+
+  </div>
+  </section>
+
+  <section id="certifications">
+  <h2>Certifications & Learning</h2>
+
+  <div class="cert-grid">
+      <div class="cert-card" role="button" tabindex="0" data-cert-src="assets/images/cert-hacker101.jpg">Hacker101</div>
+      <div class="cert-card" role="button" tabindex="0" data-cert-src="assets/images/cert-ethical.jpg">Ethical Hacking Training</div>
+      <div class="cert-card" role="button" tabindex="0" data-cert-src="assets/images/cert-ai.jpg">AI Engineering</div>
+      <div class="cert-card" role="button" tabindex="0" data-cert-src="assets/images/cert-cloud.jpg">Cloud Learning</div>
+  </div>
+</section>
+
+<section id="cta">
+  <h2>Let's Build Something Big</h2>
+  <p>
+    Looking for software engineering roles, cybersecurity opportunities,
+    collaborations, and ambitious startup projects.
+  </p>
+
+  <a href="#contact" class="btn">Let's Talk</a>
+</section>
+
+  <!-- Contact section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>I am open to job opportunities, freelance work, and collaborations.</p>
+    <div class="contact-links">
+      <a href="mailto:evankaugi@gmail.com" class="btn">Email Me</a>
+      <a href="https://github.com/E-v-an" class="btn">GitHub</a>
+      <a href="https://linkedin.com/in/evan-kaugi-4719b1405" class="btn">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Built by TheEvan &copy; 2025</p>
+  </footer>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
+
+  <!-- Skill Detail Modal -->
+  <div id="skill-modal" class="skill-modal" aria-hidden="true">
+    <div class="skill-modal-content" role="dialog" aria-modal="true" aria-labelledby="skill-modal-title">
+      <button class="skill-modal-close" aria-label="Close">&times;</button>
+      <div class="skill-modal-body">
+        <img id="skill-logo" class="skill-logo" src="" alt="" />
+        <h3 id="skill-modal-title">Skill</h3>
+        <ul id="skill-capabilities" class="skill-capabilities"></ul>
+        <div class="skill-links">
+          <a id="skill-github-link" class="btn" href="https://github.com/E-v-an?tab=repositories" target="_blank" rel="noopener noreferrer">See related projects on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+      <!-- Certificate full-screen modal -->
+      <div id="cert-modal" class="cert-modal" aria-hidden="true">
+        <div class="cert-modal-content" role="dialog" aria-modal="true">
+          <button class="cert-modal-close" aria-label="Close">&times;</button>
+          <img id="cert-img" src="" alt="Certificate" class="cert-img" />
+        </div>
+      </div>
+
+      <!-- Degree / Years modal -->
+      <div id="degree-modal" class="degree-modal" aria-hidden="true">
+        <div class="degree-modal-content" role="dialog" aria-modal="true" aria-labelledby="degree-modal-title">
+          <button class="degree-modal-close" aria-label="Close">&times;</button>
+          <h3 id="degree-modal-title">BSc Applied Computer Science — Years</h3>
+          <div class="year-cards">
+            <div class="year-card" data-year="1" tabindex="0" role="button">Year 1</div>
+            <div class="year-card" data-year="2" tabindex="0" role="button">Year 2</div>
+            <div class="year-card" data-year="3" tabindex="0" role="button">Year 3</div>
+            <div class="year-card" data-year="4" tabindex="0" role="button">Year 4</div>
+          </div>
+          <div id="year-units" class="year-units"></div>
+        </div>
+      </div>
+
+      <!-- loader removed: no visual popup -->
+
+  <!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- GLTF Loader -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+
+<!-- Orbit Controls -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+
+<!-- Main JS -->
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 // ═══════════════════════════════════════════════════════
 // SMOOTH SCROLLING
 // ═══════════════════════════════════════════════════════
@@ -379,17 +380,6 @@ clickableElements.forEach(el => {
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
 });
 
-// Nav hamburger toggle
-const navToggle = document.getElementById('nav-toggle');
-const nav = document.querySelector('nav');
-if (navToggle && nav) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = nav.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-}
-
-
 // ==========================================
 // 3D LAPTOP BACKGROUND
 // ==========================================
@@ -501,7 +491,7 @@ const cloudTextureLoader = new THREE.TextureLoader();
 
 // Simple cloud sprite texture (you can replace with custom PNG later)
 const cloudTexture = cloudTextureLoader.load(
-    "https://threejs.org/examples/textures/sprites/cloud.png"
+    "assets/images/cloud.png"
 );
 
 // Create multiple clouds
@@ -645,3 +635,4 @@ clouds.forEach((cloud, index) => {
         );
     });
 }
+
