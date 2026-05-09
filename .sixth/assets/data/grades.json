@@ -1,0 +1,22 @@
+{
+  "1": [
+    { "unit": "Intro to Programming", "score": "A" },
+    { "unit": "Discrete Mathematics", "score": "B+" },
+    { "unit": "Computer Systems I", "score": "A-" }
+  ],
+  "2": [
+    { "unit": "Data Structures", "score": "A" },
+    { "unit": "Databases", "score": "B" },
+    { "unit": "Operating Systems", "score": "B+" }
+  ],
+  "3": [
+    { "unit": "Algorithms", "score": "A-" },
+    { "unit": "Networks", "score": "B+" },
+    { "unit": "Software Engineering", "score": "A" }
+  ],
+  "4": [
+    { "unit": "Final Year Project", "score": "A" },
+    { "unit": "Distributed Systems", "score": "B+" },
+    { "unit": "AI Basics", "score": "A-" }
+  ]
+}
