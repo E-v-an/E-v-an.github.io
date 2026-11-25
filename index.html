@@ -14,21 +14,33 @@
 <body>
 
     <!-- 3D Background Canvas -->
-  <canvas id="bg-canvas"></canvas>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div id="storm-tint" aria-hidden="true"></div>
+  <canvas id="rain-canvas" aria-hidden="true"></canvas>
+  <div id="lightning-flash" aria-hidden="true">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path id="lightning-bolt-glow" fill="none" stroke="#fff4da" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+      <path id="lightning-branch-glow" fill="none" stroke="#fff4da" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+      <path id="lightning-branch-path" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+      <path id="lightning-bolt-path" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+    </svg>
+  </div>
 
   <!-- Navigation bar at the top -->
   <nav>
-    <button id="nav-toggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
       <span class="hamburger" aria-hidden="true"></span>
     </button>
-    <ul class="nav-links">
+    <ul id="nav-menu" class="nav-links" aria-label="Primary navigation" aria-hidden="true">
+      <li><a href="#hero">Home</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
+  <main>
   <!-- Hero section - first thing visitors see -->
   <section id="hero">
     <img loading="lazy" src="assets/images/profilephoto.jpeg" alt="Profile photo" class="profile-pic">
@@ -45,7 +57,7 @@
       <h3>5+</h3>
       <p>Projects Built</p>
       <div class="stat-action">
-        <button class="snapshot-btn btn-small" aria-expanded="false" aria-controls="snapshot-list">View projects</button>
+        <button class="snapshot-btn btn-small" aria-expanded="false" aria-controls="snapshot-inline">View projects</button>
       </div>
     </div>
 
@@ -53,7 +65,7 @@
       <h3>3+</h3>
       <p>Core Domains</p>
       <div class="stat-action">
-        <button class="domains-btn btn-small" aria-expanded="false" aria-controls="domains-list">View domains</button>
+        <button class="domains-btn btn-small" aria-expanded="false" aria-controls="domains-inline">View domains</button>
       </div>
     </div>
 
@@ -66,39 +78,6 @@
     </div>
   </div>
 
-  <!-- Inline snapshot list (hidden by default). Click the 5+ box button to toggle. -->
-  <div class="snapshot-card" id="snapshot-inline" aria-hidden="true">
-    <div id="snapshot-list" class="project-list" aria-hidden="true">
-      <ul>
-        <li class="project-item"><a href="https://github.com/E-v-an/E-v-an.github.io" target="_blank" rel="noopener noreferrer">Portfolio Website</a></li>
-        <li class="project-item">AI Messaging Agent</li>
-        <li class="project-item">Spotify-inspired Music Platform</li>
-        <li class="project-item">Project Four</li>
-        <li class="project-item">Project Five</li>
-      </ul>
-      <div class="snapshot-actions">
-        <a class="btn" href="https://github.com/E-v-an?tab=repositories" target="_blank" rel="noopener noreferrer">See all projects on GitHub</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Domains list (hidden by default) -->
-  <div class="domains-card" id="domains-inline" aria-hidden="true">
-    <div id="domains-list" class="project-list" aria-hidden="true">
-      <ul>
-        <li class="project-item">Software Engineering</li>
-        <li class="project-item">Data Engineering & Analytics</li>
-        <li class="project-item">AI & Machine Learning</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Focus panel (hidden by default) -->
-  <div id="focus-panel" class="focus-panel" aria-hidden="true">
-    <div class="focus-inner">
-      <div class="focus-text">100% Focus</div>
-    </div>
-  </div>
 </section>
 
   <!-- About section -->
@@ -198,17 +177,29 @@
     collaborations, and ambitious startup projects.
   </p>
 
-  <a href="#contact" class="btn">Let's Talk</a>
+  <button id="talk-toggle" type="button" class="btn" aria-expanded="false" aria-controls="talk-options">Let's Talk</button>
 </section>
 
   <!-- Contact section -->
   <section id="contact">
     <h2>Contact Me</h2>
     <p>I am open to job opportunities, freelance work, and collaborations.</p>
-    <div class="contact-links">
-      <a href="mailto:evankaugi@gmail.com" class="btn">Email Me</a>
-      <a href="https://github.com/E-v-an" class="btn" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://linkedin.com/in/evan-kaugi-4719b1405" class="btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <div class="contact-links social-links">
+      <a href="mailto:evankaugi@gmail.com" class="social-icon" aria-label="Email Evan" title="Email Evan">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v.2l8 5.5 8-5.5V7H4Zm16 10V9.6l-7.4 5.1a1 1 0 0 1-1.2 0L4 9.6V17h16Z" />
+        </svg>
+      </a>
+      <a href="https://github.com/E-v-an" class="social-icon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.5-1.3-1.24-1.65-1.24-1.65-1.02-.7.08-.69.08-.69 1.12.08 1.72 1.15 1.72 1.15 1 1.71 2.61 1.22 3.25.93.1-.73.39-1.22.71-1.51-2.5-.28-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.61 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.69.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.63 5.28-5.14 5.56.4.34.75 1.03.75 2.08v3.08c0 .3.2.64.77.54A11.2 11.2 0 0 0 12 .8Z" />
+        </svg>
+      </a>
+      <a href="https://linkedin.com/in/evan-kaugi-4719b1405" class="social-icon" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.39 4.27 5.5v6.24ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.78C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.78 24h20.44c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
+        </svg>
+      </a>
     </div>
   </section>
 
@@ -216,6 +207,194 @@
   <footer>
     <p>E-v-an &copy; 2026</p>
   </footer>
+  <section class="campus-city" aria-label="Chuka University campus buildings with illuminated windows">
+    <div class="campus-city-row">
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-1.png" alt="Chuka University tower with twin roof canopies and a central stairwell" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-1-windows" width="8" height="9" patternUnits="userSpaceOnUse">
+              <rect x="1.5" y="2" width="3.2" height="4.8" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-1-facade">
+              <path d="M12 24H43V78H12Z M57 24H88V78H57Z M44 14H56V82H44Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-1-windows)" clip-path="url(#building-1-facade)" />
+        </svg>
+      </div>
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-2.png" alt="Chuka University night view with a rounded glass tower and a rectangular block" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-2-windows" width="11" height="11" patternUnits="userSpaceOnUse">
+              <rect x="1.5" y="2" width="4.5" height="5" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-2-facade">
+              <path d="M0 5H39V76H0Z M60 39H100V81H60Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-2-windows)" clip-path="url(#building-2-facade)" />
+        </svg>
+      </div>
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-3.png" alt="Chuka University Centre facade with a circular roof and central glass atrium" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-3-windows" width="9" height="10" patternUnits="userSpaceOnUse">
+              <rect x="1.5" y="2" width="3.5" height="5.5" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-3-facade">
+              <path d="M10 27H42V82H10Z M58 27H90V82H58Z M43 15H57V82H43Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-3-windows)" clip-path="url(#building-3-facade)" />
+        </svg>
+      </div>
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-4.png" alt="Chuka University courtyard block with inward-facing windowed wings" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-4-windows" width="8" height="9" patternUnits="userSpaceOnUse">
+              <rect x="1.5" y="2" width="3" height="4.8" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-4-facade">
+              <path d="M0 18L43 34V86H0Z M57 34L100 18V86H57Z M44 29H56V78H44Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-4-windows)" clip-path="url(#building-4-facade)" />
+        </svg>
+      </div>
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-5.png" alt="Chuka University tower with repeated facade windows and a low pavilion" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-5-windows" width="10" height="10" patternUnits="userSpaceOnUse">
+              <rect x="2" y="2" width="4" height="5" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-5-facade">
+              <path d="M14 8H84V72H14Z M5 74H95V88H5Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-5-windows)" clip-path="url(#building-5-facade)" />
+        </svg>
+      </div>
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-6.png" alt="Chuka University white-and-glass block with a rounded central tower" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-6-windows" width="11" height="10" patternUnits="userSpaceOnUse">
+              <rect x="2" y="1.5" width="4" height="7" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-6-facade">
+              <path d="M0 18H61V84H0Z M61 25H100V86H61Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-6-windows)" clip-path="url(#building-6-facade)" />
+        </svg>
+      </div>
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-7.png" alt="Chuka University building with vertical glass bays and a rounded atrium" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-7-windows" width="9" height="10" patternUnits="userSpaceOnUse">
+              <rect x="1.5" y="2" width="3.5" height="6" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-7-facade">
+              <path d="M0 17H65V84H0Z M65 24H100V85H65Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-7-windows)" clip-path="url(#building-7-facade)" />
+        </svg>
+      </div>
+      <div class="campus-building">
+        <img src="assets/images/chuka-city/building-8.png" alt="Chuka University U-shaped block with window rows and glass corner towers" loading="lazy">
+        <svg class="building-windows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="building-8-windows" width="8" height="9" patternUnits="userSpaceOnUse">
+              <rect x="1.5" y="2" width="3" height="5.2" fill="#f5fbff" />
+            </pattern>
+            <clipPath id="building-8-facade">
+              <path d="M0 8H18V86H0Z M18 20H82V83H18Z M82 6H100V86H82Z" />
+            </clipPath>
+          </defs>
+          <rect width="100" height="100" fill="url(#building-8-windows)" clip-path="url(#building-8-facade)" />
+        </svg>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <div class="snapshot-card side-panel" id="snapshot-inline" aria-hidden="true" inert>
+    <button class="side-panel-handle" type="button" aria-label="Open projects panel. Swipe left to explore" aria-expanded="false">
+      <span class="side-panel-handle-label">Projects</span><span aria-hidden="true">&larr;</span>
+    </button>
+    <button class="side-panel-close" type="button" aria-label="Close projects panel">&times;</button>
+    <div class="side-panel-content" aria-hidden="true" inert>
+      <div id="snapshot-list" class="project-list" aria-hidden="true">
+        <ul>
+          <li class="project-item"><a href="https://github.com/E-v-an/E-v-an.github.io" target="_blank" rel="noopener noreferrer">Portfolio Website</a></li>
+          <li class="project-item">AI Messaging Agent</li>
+          <li class="project-item">Spotify-inspired Music Platform</li>
+          <li class="project-item">Project Four</li>
+          <li class="project-item">Project Five</li>
+        </ul>
+        <div class="snapshot-actions">
+          <a class="btn" href="https://github.com/E-v-an?tab=repositories" target="_blank" rel="noopener noreferrer">See all projects on GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="domains-card side-panel" id="domains-inline" aria-hidden="true" inert>
+    <button class="side-panel-handle" type="button" aria-label="Open domains panel. Swipe left to explore" aria-expanded="false">
+      <span class="side-panel-handle-label">Domains</span><span aria-hidden="true">&larr;</span>
+    </button>
+    <button class="side-panel-close" type="button" aria-label="Close domains panel">&times;</button>
+    <div class="side-panel-content" aria-hidden="true" inert>
+      <div id="domains-list" class="project-list" aria-hidden="true">
+        <ul>
+          <li class="project-item">Software Engineering</li>
+          <li class="project-item">Data Engineering & Analytics</li>
+          <li class="project-item">AI & Machine Learning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="focus-panel" class="focus-panel side-panel" aria-hidden="true" inert>
+    <button class="side-panel-handle" type="button" aria-label="Open focus panel. Swipe left to explore" aria-expanded="false">
+      <span class="side-panel-handle-label">Focus</span><span aria-hidden="true">&larr;</span>
+    </button>
+    <button class="side-panel-close" type="button" aria-label="Close focus panel">&times;</button>
+    <div class="side-panel-content focus-inner" aria-hidden="true" inert>
+      <div class="focus-text">100% Focus</div>
+    </div>
+  </div>
+
+  <div id="talk-options" class="talk-options side-panel" aria-hidden="true" inert>
+    <button class="side-panel-handle" type="button" aria-label="Open contact panel. Swipe left to explore" aria-expanded="false">
+      <span class="side-panel-handle-label">Contact</span><span aria-hidden="true">&larr;</span>
+    </button>
+    <button class="side-panel-close" type="button" aria-label="Close contact panel">&times;</button>
+    <div class="side-panel-content" aria-hidden="true" inert>
+      <header class="contact-panel-intro">
+        <p class="contact-panel-kicker">LET'S CONNECT</p>
+        <h2>Have something in mind?</h2>
+        <p>Tell me what you're building, and let's find a way to make it happen.</p>
+      </header>
+      <form id="contact-form" class="contact-form">
+        <label for="contact-message">Your message (up to 500 words)</label>
+        <textarea id="contact-message" name="message" rows="5" required aria-describedby="word-count" placeholder="A project, opportunity, or just a hello..."></textarea>
+        <p id="word-count" class="word-count" aria-live="polite">0 / 500 words</p>
+        <button type="submit" class="btn">Send via WhatsApp</button>
+      </form>
+      <div class="contact-links">
+        <a href="tel:+254742308701" class="btn">Call me</a>
+        <a href="https://wa.me/254742308701" class="btn" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+      </div>
+    </div>
+  </div>
 
   <div class="cursor-dot"></div>
   <div class="cursor-glow"></div>
